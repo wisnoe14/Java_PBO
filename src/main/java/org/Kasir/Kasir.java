@@ -5,8 +5,6 @@ import java.util.ArrayList;
 public class Kasir {
     public ArrayList<Item> daftarItem = new ArrayList<>();
 
-
-
     public void tambahItem(Item item) {
         //Nambah Item
         daftarItem.add(item);
@@ -44,4 +42,6 @@ public class Kasir {
         }
         return totalHarga;
     }
+
+
 }

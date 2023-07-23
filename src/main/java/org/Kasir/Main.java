@@ -21,9 +21,12 @@ public class Main {
                     tambahMinuman();
                     break;
                 case 3 :
-                    hitung();
+                    updateMenu();
                     break;
                 case 4 :
+                    hitung();
+                    break;
+                case 5 :
                     deleteMenu();
                     break;
                 default:
@@ -35,6 +38,32 @@ public class Main {
             cobaLagi = scan.next();
         } while (cobaLagi.equals("y"));
 
+    }
+
+    private static void updateMenu() {
+        System.out.println("Masukkan nomor makanan yang ingin diupdate: ");
+        int no = scan.nextInt();
+        System.out.println("Anda memilih pilihan Update");
+
+        System.out.println("Masukkan nama menu:");
+        scan.nextLine();
+        String nama = scan.nextLine();
+        System.out.println("Masukkan harga menu:");
+        int harga = scan.nextInt();
+        scan.nextLine();
+        System.out.println("Masukkan jenis menu:");
+        String ukuran = scan.nextLine();
+
+        // Memanggil setter untuk mengubah nilai atribut pada objek menu
+        kasir.daftarItem.get(no - 1).setNama(nama);
+        kasir.daftarItem.get(no - 1).setHarga(harga);
+
+        // Memeriksa jenis objek dan memanggil setter yang sesuai
+        if (kasir.daftarItem.get(no - 1) instanceof Makanan) {
+            ((Makanan) kasir.daftarItem.get(no - 1)).setJenis(ukuran);
+        } else if (kasir.daftarItem.get(no - 1) instanceof Minuman) {
+            ((Minuman) kasir.daftarItem.get(no - 1)).setUkuran(ukuran);
+        }
     }
 
     private static void hitung() {
@@ -54,7 +83,6 @@ public class Main {
         scan.nextLine();
         System.out.println("Masukkan jenis minuman :");
         String ukuran = scan.nextLine();
-
         kasir.tambahItem(new Minuman(nama,harga,ukuran));
     }
 
@@ -72,9 +100,10 @@ public class Main {
         System.out.println("Masukkan jenis makanan :");
         String jenis = scan.nextLine();
 
-       kasir.tambahItem(new Makanan(nama,harga,jenis));
-
+        kasir.tambahItem(new Minuman(nama, harga, jenis));
     }
+
+
 
     private static void deleteMenu() {
             // Menghapus item
@@ -99,8 +128,9 @@ public class Main {
         System.out.println("Pilihan");
         System.out.println("1. Tambah Makanan");
         System.out.println("2. Tambah Minuman");
-        System.out.println("3. Hitung Total");
-        System.out.println("4. Delete Menu");
+        System.out.println("3. Update Menu");
+        System.out.println("4. Hitung Total");
+        System.out.println("5. Delete Menu");
         System.out.print("Masukkan Opsi : ");
         int pilih = 0;
         try {

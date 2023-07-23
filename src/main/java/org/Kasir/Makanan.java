@@ -7,14 +7,20 @@ public class Makanan extends Item {
         super(nama, harga);
         this.jenis = jenis;
     }
-
+    public void setJenis(String jenis)
+    {
+        this.jenis = jenis;
+    }
     public String getJenis() {
         return jenis;
     }
+
 
     @Override
     public String getInfo() {
         return getJenis();
     }
+
+
 }
 
